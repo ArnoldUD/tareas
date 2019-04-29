@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <!--Resource id="tareaJNDI" type="javax.sql.DataSource">#Sun Apr 28 18:02:02 COT 2019
+jdbcDriver=org.postgresql.Driver
+password=Admin
+userName=postgres
+jdbcUrl=jdbc\:postgresql\://localhost\:5432/tareadb
+</Resource-->
+</resources>

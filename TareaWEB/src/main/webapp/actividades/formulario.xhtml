@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:panelGrid columns="2">
+        <p:outputLabel for="fechaCreacion"
+                       value="Fecha de creación"/>
+        <h:panelGroup>
+            <p:calendar id="fechaCreacion"
+                        value="#{actividadesManagedBean.actividades.fechaCreacion}"
+                        pattern="dd/MM/yyyy"
+                        maxdate="#{actividadesManagedBean.actividades.fechaLimite}"
+                        widgetVar="wvCalFechaCreacion"
+                        required="true">
+                <p:ajax event="dateSelect"
+                        update="@widgetVar(wvCalFechaLimite) @widgetVar(wvBtnModificar)"
+                        listener="#{actividadesManagedBean.eventDetectarCambiosListener()}"/>
+            </p:calendar>
+            <p:message for="fechaCreacion"
+                       showDetail="true"/>
+        </h:panelGroup>
+
+        <p:outputLabel for="fechaLimite"
+                       value="Fecha límite"/>
+        <h:panelGroup>
+            <p:calendar id="fechaLimite"
+                        value="#{actividadesManagedBean.actividades.fechaLimite}"
+                        pattern="dd/MM/yyyy"
+                        mindate="#{actividadesManagedBean.actividades.fechaCreacion}"
+                        widgetVar="wvCalFechaLimite"
+                        required="true">
+                <p:ajax event="dateSelect"
+                        update="@widgetVar(wvCalFechaCreacion) @widgetVar(wvBtnModificar)"
+                        listener="#{actividadesManagedBean.eventDetectarCambiosListener()}"/>
+            </p:calendar>
+            <p:message for="fechaLimite"
+                       showDetail="true"/>
+        </h:panelGroup>
+
+        <p:outputLabel for="responsable"
+                       value="Responsable"/>
+        <h:panelGroup>
+            <p:selectOneMenu id="responsable"
+                             value="#{actividadesManagedBean.actividades.responsable}"
+                             converter="responsableConverter"
+                             required="true">
+                <p:ajax event="change"
+                        update="@widgetVar(wvBtnModificar)"
+                        listener="#{actividadesManagedBean.eventDetectarCambiosListener()}"/>
+
+                <f:selectItem itemLabel="Seleccione uno"
+                              itemValue="#{null}"
+                              noSelectionOption="true"/>
+
+                <f:selectItems value="#{actividadesManagedBean.responsablesList}"
+                               var="responsables"
+                               itemLabel="#{responsables.nombres} #{responsables.apellidos}"
+                               itemValue="#{responsables}"/>
+            </p:selectOneMenu>
+            <p:message for="responsable"
+                       showDetail="true"/>
+        </h:panelGroup>
+
+        <p:outputLabel for="descripcion"
+                       value="Descripción"/>
+        <h:panelGroup>
+            <p:inputText id="descripcion"
+                         value="#{actividadesManagedBean.actividades.descripcion}">
+                <p:ajax event="keyup"
+                        update="@widgetVar(wvBtnModificar)"
+                        listener="#{actividadesManagedBean.eventDetectarCambiosListener()}"/>
+            </p:inputText>
+            <p:message for="descripcion"
+                       showDetail="true"/>
+        </h:panelGroup>
+
+        <p:outputLabel for="estado"
+                       value="Estado"/>
+        <h:panelGroup>
+            <p:selectOneMenu id="estado"
+                             value="#{actividadesManagedBean.actividades.estado}"
+                             required="true">
+                <p:ajax event="change"
+                        update="@widgetVar(wvBtnModificar)"
+                        listener="#{actividadesManagedBean.eventDetectarCambiosListener()}"/>
+
+                <f:selectItem itemLabel="Seleccione uno"
+                              itemValue="#{null}"
+                              noSelectionOption="true"/>
+
+                <f:selectItems value="#{actividadesManagedBean.estadoActividadEnumList}"
+                               var="estados"
+                               itemLabel="#{estados.replace('_', ' ')}"
+                               itemValue="#{estados}"/>
+            </p:selectOneMenu>
+            <p:message for="estado"
+                       showDetail="true"/>
+        </h:panelGroup>
+    </h:panelGrid>
+</html>
+
