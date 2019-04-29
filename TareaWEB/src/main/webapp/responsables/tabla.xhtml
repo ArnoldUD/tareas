@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <p:dataTable value="#{responsablesManagedBean.responsablesList}"
+                 var="responsableSeleccionado"
+                 rowKey="#{responsableSeleccionado.identificador}"
+                 selection="#{responsablesManagedBean.responsables}"
+                 selectionMode="single"
+                 emptyMessage="No hay resultados">
+        <p:ajax event="rowSelect"
+                update="@form"/>
+        <p:column headerText="Nombre">
+            <h:outputText value="#{responsableSeleccionado.nombres}"/>
+        </p:column>
+
+        <p:column headerText="Apellidos">
+            <h:outputText value="#{responsableSeleccionado.apellidos}"/>
+        </p:column>
+    </p:dataTable>
+</html>
+

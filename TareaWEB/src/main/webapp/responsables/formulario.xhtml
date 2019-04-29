@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:panelGrid columns="2">
+        <p:outputLabel for="nombres"
+                       value="Nombres"/>
+        <h:panelGroup>
+            <p:inputText id="nombres"
+                         value="#{responsablesManagedBean.responsables.nombres}"
+                         required="true">
+                <p:ajax event="keyup"
+                        update="@widgetVar(wvBtnModificar)"
+                        listener="#{responsablesManagedBean.eventDetectarCambiosListener()}"/>
+            </p:inputText>
+            <p:message for="nombres"
+                       showDetail="true"/>
+        </h:panelGroup>
+        
+        <p:outputLabel for="apellidos"
+                       value="Apellidos"/>
+        <h:panelGroup>
+            <p:inputText id="apellidos"
+                         value="#{responsablesManagedBean.responsables.apellidos}"
+                         required="true">
+                <p:ajax event="keyup"
+                        update="@widgetVar(wvBtnModificar)"
+                        listener="#{responsablesManagedBean.eventDetectarCambiosListener()}"/>
+            </p:inputText>
+            <p:message for="apellidos"
+                       showDetail="true"/>
+        </h:panelGroup>
+        
+        <p:outputLabel for="telefono"
+                       value="Teléfono"/>
+        <h:panelGroup>
+            <p:inputText id="telefono"
+                         value="#{responsablesManagedBean.responsables.telefono}">
+                <p:ajax event="keyup"
+                        update="@widgetVar(wvBtnModificar)"
+                        listener="#{responsablesManagedBean.eventDetectarCambiosListener()}"/>
+                <f:convertNumber integerOnly="true"
+                                 groupingUsed="false"/>
+            </p:inputText>
+            <p:message for="telefono"
+                       showDetail="true"/>
+        </h:panelGroup>
+        
+        <p:outputLabel for="email"
+                       value="Correo electrónico"/>
+        <h:panelGroup>
+            <p:inputText id="email"
+                         value="#{responsablesManagedBean.responsables.email}">
+                <p:ajax event="keyup"
+                        update="@widgetVar(wvBtnModificar)"
+                        listener="#{responsablesManagedBean.eventDetectarCambiosListener()}"/>
+            </p:inputText>
+            <p:message for="email"
+                       showDetail="true"/>
+        </h:panelGroup>
+    </h:panelGrid>
+</html>
+
